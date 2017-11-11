@@ -1,17 +1,40 @@
 <div class="bonds-container">
-  <% @bonds.each do |bond| %>
-  <% unless bond.nominal_rate == 0 %>
-  <div class="product">
-    <div class='product-upvote'>
-      <div class='product-count'><%= "#{(bond.nominal_rate * 100).round(2)}%" %></div>
+  <h1 class="text-center"> Depositos a Plazo</h1>
+  <br>
+  <% @terms.each do |term| %>
+    <div class="product product-term" id="<%= term %>">
+      <div class='product-body'>
+        <h2><%= term > 1 ? "#{term} Meses" : "#{term} Mes" %></h2>
+      </div>
     </div>
-    <%= image_tag "Bank-#{bond.bank.id}.png", class: "product-image hidden-xs" %>
-    <div class='product-body'>
-      <p><%= bond.country %></p>
-      <p><%= bond.bank.name %></p>
+    <div class="product-bond-<%= term %>" style="display: none;">
+    <% @bonds.where(term_months: term).sort_by{|b| b.nominal_rate }.reverse.each do |bond| %>
+      <% unless bond.nominal_rate == 0 %>
+      <div class="product">
+        <div class='product-upvote'>
+          <div class='product-count'>
+            <h3><%= "#{(bond.nominal_rate * 100).round(2)}%" %></h3>
+          </div>
+        </div>
+        <%= image_tag "Bank-#{bond.bank.id}.png", class: "product-image hidden-xs" %>
+        <div class='product-body'>
+          <p><%= bond.country %></p>
+          <p><%= bond.bank.name %></p>
+        </div>
+        <button type="button" class="btn btn-primary btn-outline">Información</button>
+      </div>
+      <% end %>
+    <% end %>
     </div>
-    <button type="button" class="btn btn-primary btn-outline">Información</button>
-  </div>
-  <% end %>
   <% end %>
 </div>
+
+<%= content_for :after_js do %>
+<script>
+  $('.product-term').click(function(event) {
+    console.log(this.id);
+    $(".product-bond-" + this.id).slideToggle();
+  })
+</script>
+
+<% end %>

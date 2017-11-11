@@ -7,6 +7,12 @@
   background-color: white;
 }
 
+.product-term {
+  background-color: $brand-color;
+  margin: 10px 0;
+  color: white;
+}
+
 /* Body design */
 .product-body {
   flex: 1 1 auto;
@@ -15,6 +21,7 @@
   font-weight: bold;
   font-size: 23px;
   margin-top: 0;
+  padding: 0 5px;
 }
 .product-body p {
   font-weight: lighter;
@@ -80,6 +87,12 @@
   background: #f7f7fa;
   cursor: pointer;
 }
+
+.product-term:hover {
+  background: rgba(68, 132, 251, 0.9);
+  cursor: pointer;
+}
+
 .product-upvote:hover, .product-upvote.product-upvote-upvoted {
   color: #5898f1;
   cursor: pointer;

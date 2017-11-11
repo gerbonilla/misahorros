@@ -3,6 +3,7 @@ class BondsController < ApplicationController
 
   def index
     @bonds = Bond.order(:term_months)
+    @terms = [1, 2, 3, 4, 6, 12, 18, 24, 36, 60]
   end
 
   def show
