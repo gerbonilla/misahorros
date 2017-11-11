@@ -1,0 +1,13 @@
+.bonds-container {
+  padding-top: 150px;
+  width: 80vw;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: inherit;
+  transition: all .3s;
+  color: $brand-color;
+}

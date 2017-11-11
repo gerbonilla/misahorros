@@ -10,10 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171106211454) do
+ActiveRecord::Schema.define(version: 20171106212728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "banks", force: :cascade do |t|
+    t.string "name"
+    t.string "country"
+    t.string "fitch"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bonds", force: :cascade do |t|
+    t.float "effective_rate"
+    t.float "term_months"
+    t.float "term_years"
+    t.bigint "bank_id"
+    t.string "country"
+    t.float "nominal_rate"
+    t.string "guarantee"
+    t.string "currency"
+    t.string "minimum"
+    t.string "maximum"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bank_id"], name: "index_bonds_on_bank_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,4 +57,5 @@ ActiveRecord::Schema.define(version: 20171106211454) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bonds", "banks"
 end

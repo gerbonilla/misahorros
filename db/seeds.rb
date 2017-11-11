@@ -1,7 +1,16 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'csv'
+
+csv_options = { col_sep: ',', headers: :first_row, :encoding => 'ISO-8859-1' }
+filepath    = Rails.root.join("db", "tasas_bancos.csv")
+terms = [1, 2, 3, 4, 6, 12, 18, 24, 36, 60]
+CSV.foreach(filepath, csv_options) do |row|
+puts "**************"
+  bank = Bank.create!(name: row['Bank'], country: row['Country'], fitch: row['Fitch'])
+  puts "#{bank.name} created"
+  terms.each do |months|
+    if row["#{months}"] != "NA"
+      bond = Bond.create!(term_months: months, term_years: (months/12), bank: bank, country: bank.country, nominal_rate: row["#{months}"], currency: "USD")
+      puts "***#{bond.term_months} month at #{bond.nominal_rate * 100}%"
+    end
+  end
+end
