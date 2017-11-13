@@ -1,0 +1,30 @@
+<% @terms.each do |term| %>
+<div class="product product-term" id="<%= term %>">
+  <div class='product-body'>
+    <h3><%= term > 1 ? "#{term} Meses" : "#{term} Mes" %></h3>
+  </div>
+</div>
+<div class="product-bond-<%= term %>" style="display: none;">
+  <% @bonds.where(term_months: term).sort_by{|b| b.nominal_rate }.reverse.each do |bond| %>
+  <% unless bond.nominal_rate == 0 %>
+  <div class="product">
+    <div class='product-upvote'>
+      <h3 class="brand-green-text"><%= "#{(bond.nominal_rate * 100).round(2)}%" %></h3>
+    </div>
+    <div class='product-body product-rating'>
+      <p><%= bond.bank.fitch %></p>
+    </div>
+    <%= image_tag "Bank-#{bond.bank.id}.png", class: "product-image hidden-xs" %>
+    <div class='product-body product-description'>
+      <p><%= bond.country %></p>
+      <p class="product-description"><%= bond.bank.name %></p>
+    </div>
+    <div class='product-upvote'>
+    <h4>$4,300</h4>
+    </div>
+    <button type="button text-right" class="btn btn-primary btn-outline">Info.</button>
+  </div>
+  <% end %>
+  <% end %>
+</div>
+<% end %>
