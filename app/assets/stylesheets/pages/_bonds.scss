@@ -1,8 +1,11 @@
 .bonds-container {
   padding-top: 80px;
-  width: 80vw;
-  max-width: 700px;
+  width: 100vw;
+  max-width: 900px;
   margin: 0 auto;
+  .container {
+    width: 100%;
+  }
 }
 
 .btn-outline {
@@ -11,3 +14,11 @@
   transition: all .3s;
   color: $brand-color;
 }
+
+@media screen and (min-width: 776px) {
+  .filter-container {
+    position: sticky;
+    top: 100px;
+  }
+}
+

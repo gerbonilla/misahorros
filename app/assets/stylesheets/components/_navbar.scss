@@ -10,6 +10,7 @@
   justify-content: space-between;
   position: fixed;
   width: 100vw;
+  z-index: 7;
 }
 
 /* Logo */
@@ -40,7 +41,7 @@
 /* Navbar link */
 .navbar-wagon-link {
   color: #616668;
-  font-size: 14px;
+  font-size: 12px;
 }
 .navbar-wagon-link:hover {
   color: #da552f;
@@ -57,7 +58,7 @@
   transition: color 0.3s ease;
   font-weight: lighter !important;
   color: #999999 !important;
-  font-size: 15px !important;
+  font-size: 14px !important;
   line-height: 22px !important;
   padding: 10px 20px;
 }

@@ -1,0 +1,33 @@
+.btn-group-prop {
+  width: 100%;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+}
+
+.terms-btn {
+  background-color: rgba(69, 134, 255, 0.9);
+  color: white;
+  border: none;
+  font-size: 12px;
+  padding: 6px 8px;
+  flex: 0 0 48%;
+  margin-top: 4px;
+  border-radius: 3px;
+}
+
+#countries {
+  flex: 0 0 99%;
+}
+
+.btn-bond-card {
+  width: 100%;
+  border: none;
+}
+
+.btn-bond-card-orange {
+  width: 100%;
+  background-color: $orange;
+  border: none;
+  margin-bottom: 5px;
+}

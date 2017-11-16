@@ -1,26 +1,43 @@
 <div class="bonds-container">
-  <h3 class="text-center"> Depositos a Plazo</h3>
+  <!-- <h3 class="text-center"> Depositos a Plazo</h3> -->
   <br>
-  <!-- Inversion Form Field -->
-  <div class="brand-container">
-    <form class="form-inline text-center">
-      <div class="form-group">
-        <label for="investment" class="sr-only">Inversión:</label>
-        <input type="text" readonly class="form-control-plaintext no-border text-center" id="investment" value="Inversión:">
-      </div>
-      <div class="form-group mx-sm-3">
-        <label for="inputInversion" class="sr-only">Inversion</label>
-        <input type="number" class="form-control" id="inputInversion" placeholder="">
-      </div>
-    </form>
-  </div>
-  <br>
+  <div class="results-container container">
+    <div class="row">
+      <div class="filter-container col-xs-12 col-sm-4">
+        <!-- Inversion Form Field -->
+        <div class="brand-container">
+          <form class="form-inline text-center">
+            <div class="input-group">
+              <span class="input-group-addon">Inversion ($)</span>
+              <input type="number" value="5000" min="0" step="100" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
+            </div>
+          </form>
+        </div>
+        <br>
 
-  <!-- Country Tabs -->
-
-  <!-- Show Bonds -->
-  <div class="brand-container">
-    <%= render 'shared/bonds_dashboard' %>
+        <!-- Country & Terms Tabs -->
+        <div class="brand-container">
+          <div class="btn-group-prop" data-toggle="buttons">
+            <button class="terms-btn" id="countries">El Salvador</button>
+            <button class="terms-btn" id="countries">Panama</button>
+            <button class="terms-btn" id="countries">Mexico</button>
+          </div>
+        </div>
+        <br>
+        <div class="brand-container">
+          <div class="btn-group-prop" data-toggle="buttons">
+          <% @terms.each do |t| %>
+            <button class="terms-btn"><%= t > 1 ? "#{t} Meses" : "#{t} Mes" %></button>
+          <% end %>
+          </div>
+        </div>
+        <br>
+      </div>
+      <!-- Show Bonds -->
+      <div class="brand-container-no-style col-xs-12 col-sm-8">
+        <%= render 'shared/bonds_dashboard' %>
+      </div>
+    </div>
   </div>
 </div>
 
