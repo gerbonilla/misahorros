@@ -1,30 +1,34 @@
-<% @terms.each do |term| %>
-<div class="product product-term" id="<%= term %>">
-  <div class='product-body'>
-    <h3><%= term > 1 ? "#{term} Meses" : "#{term} Mes" %></h3>
-  </div>
-</div>
-<div class="product-bond-<%= term %>" style="display: none;">
-  <% @bonds.where(term_months: term).sort_by{|b| b.nominal_rate }.reverse.each do |bond| %>
+
+<!-- Bonds container -->
+<div class="container">
+  <% @bonds.sort_by{|b| b.nominal_rate }.reverse.each do |bond| %>
   <% unless bond.nominal_rate == 0 %>
-  <div class="product">
-    <div class='product-upvote'>
-      <h3 class="brand-green-text"><%= "#{(bond.nominal_rate * 100).round(2)}%" %></h3>
+  <div class="col-xs-12 col-sm-6 bond-card">
+    <!-- Bond Photo -->
+    <%= image_tag "Bank-#{bond.bank.id}.png", class: "bond-card-image hidden-xs" %>
+
+    <!-- Bond nominal rate -->
+    <h3 class="brand-green-text"><%= "#{(bond.nominal_rate * 100).round(2)}%" %> interés</h3>
+
+    <!-- Bond Rating and term -->
+    <div class="bond-info">
+      <p><%= bond.term_months.to_i %> Meses</p>
+      <p>Fitch Rating: <%= bond.bank.fitch %></p>
+      <p class="interest">Interes: $<%= ((bond.term_months.to_f / 12) * bond.nominal_rate * 5000).round(2) %></p>
     </div>
-    <div class='product-body product-rating'>
-      <p><%= bond.bank.fitch %></p>
+
+    <!-- Bond Country and Bank -->
+    <div class="bond-country">
+    <p id="bond-country"><%= bond.country %></p>
     </div>
-    <%= image_tag "Bank-#{bond.bank.id}.png", class: "product-image hidden-xs" %>
-    <div class='product-body product-description'>
-      <p><%= bond.country %></p>
-      <p class="product-description"><%= bond.bank.name %></p>
+
+    <!-- Info Button -->
+    <div class="bond-buttons-wrapper">
+      <button type="button text-right" class="btn btn-primary btn-bond-card-orange">Aplicar</button>
+      <button type="button text-right" class="btn btn-primary btn-bond-card">Ver Producto</button>
     </div>
-    <div class='product-upvote'>
-    <h4>$4,300</h4>
-    </div>
-    <button type="button text-right" class="btn btn-primary btn-outline">Info.</button>
   </div>
   <% end %>
   <% end %>
 </div>
-<% end %>
+</div>
