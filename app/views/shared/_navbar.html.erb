@@ -7,8 +7,8 @@
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
     <%= link_to "DEPOSITOS A PLAZO", bonds_path, class: "navbar-wagon-item navbar-wagon-link" %>
-    <%= link_to "BANCOS", bonds_path, class: "navbar-wagon-item navbar-wagon-link" %>
-    <%= link_to "CONTACTANOS", bonds_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <!-- <%= link_to "BANCOS", bonds_path, class: "navbar-wagon-item navbar-wagon-link" %> -->
+    <%= link_to "CONTÁCTANOS", new_contact_path, class: "navbar-wagon-item navbar-wagon-link" %>
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
@@ -17,8 +17,8 @@
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
         <li><%= link_to "Ahorros", bonds_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
-        <li><%= link_to "Bancos", bonds_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
-        <li><%= link_to "Contactanos", bonds_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
+        <!-- <li><%= link_to "Bancos", bonds_path, class: "navbar-wagon-item navbar-wagon-link" %></li> -->
+        <li><%= link_to "Contactanos", new_contact_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
       </ul>
     </div>
   </div>

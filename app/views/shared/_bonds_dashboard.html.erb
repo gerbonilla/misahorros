@@ -24,8 +24,10 @@
 
     <!-- Info Button -->
     <div class="bond-buttons-wrapper">
+    <%= link_to bond_path(bond) do %>
       <button type="button text-right" class="btn-bond-card-orange">Aplicar</button>
       <button type="button text-right" class="btn-bond-card">Ver Producto</button>
+      <% end %>
     </div>
   </div>
   <% end %>

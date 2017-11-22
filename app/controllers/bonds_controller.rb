@@ -22,6 +22,7 @@ class BondsController < ApplicationController
 
   def show
     @bond = Bond.find(params[:id])
+    @contact = Contact.new()
   end
 
   private

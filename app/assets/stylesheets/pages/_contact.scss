@@ -1,0 +1,52 @@
+.contact-wrapper {
+  width: 100vw;
+  height: 100vh;
+  padding-top: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.contact-form-wrapper {
+  height: 100%;
+  flex: 0 0 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.contact-content-wrapper {
+  height: 100%;
+  flex: 0 0 50%;
+  background-color: $brand-primary;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  flex-direction: column;
+  text-align: justify;
+}
+
+@media screen and (max-width:600px) {
+  .contact-wrapper {
+    flex-direction: column-reverse;
+    height: auto;
+  }
+  .contact-form-wrapper {
+    height: 50vh;
+    width: 100%;
+    padding-top: 60px;
+  }
+  .contact-content-wrapper {
+   height: 50vh;
+ }
+ .brand-form-wrapper {
+  margin-top: 60px;
+ }
+}
+
+.orange-bg {
+  background-color: $orange;
+}

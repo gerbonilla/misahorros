@@ -8,7 +8,7 @@
         <%= form_tag(bonds_path, method: "get", remote: true) do %>
         <div class="brand-container">
             <div class="input-group form-inline text-center">
-              <span class="input-group-addon">Inversion ($)</span>
+              <span class="input-group-addon">Inversión ($)</span>
               <input type="number" onkeyup="calculateInterest(this)" value="5000" min="0" step="100" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
             </div>
         </div>
@@ -18,7 +18,7 @@
 
         <div class="brand-container">
 
-          <%= label_tag("Filtra por pais:") %>
+          <%= label_tag("Filtrar por pais:") %>
           <div class="btn-group-prop " data-toggle="buttons">
             <input type="hidden" name="countryFilter">
             <input type="hidden" name="termFilter">
@@ -31,7 +31,7 @@
         </div>
         <br>
         <div class="brand-container">
-          <%= label_tag("Filtra por plazo:") %>
+          <%= label_tag("Filtrar por plazo:") %>
           <div class="btn-group-prop">
             <% @terms.each do |t| %>
             <% termsString = t > 1 ? "#{t} Meses" : "#{t} Mes" %>

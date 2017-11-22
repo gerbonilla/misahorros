@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   resources :bonds, only: [:show, :index]
+  resources :contacts, only: [:new, :create]
 
 
   # get ':username', to: 'users#show', as: :user
