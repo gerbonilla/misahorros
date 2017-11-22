@@ -1,5 +1,10 @@
 require 'csv'
 
+Bond.destroy_all
+puts 'deleted bonds'
+Bank.destroy_all
+puts 'deleted banks'
+
 csv_options = { col_sep: ',', headers: :first_row, :encoding => 'ISO-8859-1' }
 filepath    = Rails.root.join("db", "tasas_bancos.csv")
 terms = [1, 2, 3, 4, 6, 12, 18, 24, 36, 60]
