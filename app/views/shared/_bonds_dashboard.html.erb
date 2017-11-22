@@ -1,20 +1,20 @@
 
 <!-- Bonds container -->
 <div class="container">
-  <% @bonds.sort_by{|b| b.nominal_rate }.reverse.each do |bond| %>
+  <% bonds.sort_by{|b| b.nominal_rate }.reverse.each do |bond| %>
   <% unless bond.nominal_rate == 0 %>
-  <div class="col-xs-12 col-sm-6 bond-card">
+  <div class="col-xs-10 col-sm-6 bond-card">
     <!-- Bond Photo -->
-    <%= image_tag "Bank-#{bond.bank.id}.png", class: "bond-card-image hidden-xs" %>
+    <%= image_tag "Bank-#{bond.bank.id}.png", class: "bond-card-image" %>
 
     <!-- Bond nominal rate -->
-    <h3 class="brand-green-text"><%= "#{(bond.nominal_rate * 100).round(2)}%" %> interés</h3>
+    <h3 class="brand-green-text" id="<%= (bond.nominal_rate * 100).round(2) %>"><%= "#{(bond.nominal_rate * 100).round(2)}%" %> interés</h3>
 
     <!-- Bond Rating and term -->
     <div class="bond-info">
-      <p><%= bond.term_months.to_i %> Meses</p>
+      <p id="<%= bond.term_months %>"><%= bond.term_months.to_i %> Meses</p>
       <p>Fitch Rating: <%= bond.bank.fitch %></p>
-      <p class="interest">Interes: $<%= ((bond.term_months.to_f / 12) * bond.nominal_rate * 5000).round(2) %></p>
+      <p class="interest">Interés: <%= Money.new(((bond.term_months.to_f / 12) * bond.nominal_rate * 5000 * 100).round(2)).format %></p>
     </div>
 
     <!-- Bond Country and Bank -->
@@ -24,8 +24,8 @@
 
     <!-- Info Button -->
     <div class="bond-buttons-wrapper">
-      <button type="button text-right" class="btn btn-primary btn-bond-card-orange">Aplicar</button>
-      <button type="button text-right" class="btn btn-primary btn-bond-card">Ver Producto</button>
+      <button type="button text-right" class="btn-bond-card-orange">Aplicar</button>
+      <button type="button text-right" class="btn-bond-card">Ver Producto</button>
     </div>
   </div>
   <% end %>

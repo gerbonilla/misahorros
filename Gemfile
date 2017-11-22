@@ -17,6 +17,8 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'money-rails'
+gem 'money'
+gem 'accountingjs-rails'
 
 group :development, :test do
   gem 'pry-byebug'

@@ -5,37 +5,48 @@
     <div class="row">
       <div class="filter-container col-xs-12 col-sm-4">
         <!-- Inversion Form Field -->
+        <%= form_tag(bonds_path, method: "get", remote: true) do %>
         <div class="brand-container">
-          <form class="form-inline text-center">
-            <div class="input-group">
+            <div class="input-group form-inline text-center">
               <span class="input-group-addon">Inversion ($)</span>
-              <input type="number" value="5000" min="0" step="100" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
+              <input type="number" onkeyup="calculateInterest(this)" value="5000" min="0" step="100" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
             </div>
-          </form>
         </div>
         <br>
 
         <!-- Country & Terms Tabs -->
+
         <div class="brand-container">
-          <div class="btn-group-prop" data-toggle="buttons">
-            <button class="terms-btn" id="countries">El Salvador</button>
-            <button class="terms-btn" id="countries">Panama</button>
-            <button class="terms-btn" id="countries">Mexico</button>
+
+          <%= label_tag("Filtra por pais:") %>
+          <div class="btn-group-prop " data-toggle="buttons">
+            <input type="hidden" name="countryFilter">
+            <input type="hidden" name="termFilter">
+            <% @countries.each do |country| %>
+            <button onclick="countryClicked(this)" class="terms-btn" id="<%= country.gsub(' ', '_') %>">
+              <%= country %>
+            </button>
+            <% end %>
           </div>
         </div>
         <br>
         <div class="brand-container">
-          <div class="btn-group-prop" data-toggle="buttons">
-          <% @terms.each do |t| %>
-            <button class="terms-btn"><%= t > 1 ? "#{t} Meses" : "#{t} Mes" %></button>
-          <% end %>
+          <p>Filtra por plazo</p>
+          <div class="btn-group-prop">
+            <% @terms.each do |t| %>
+            <% termsString = t > 1 ? "#{t} Meses" : "#{t} Mes" %>
+            <button onclick="termClicked(this)" class="terms-btn" id="<%= t %>"><%= termsString %>
+            </button>
+            <% end %>
           </div>
         </div>
         <br>
+        <input type="submit" class="hidden" id="filter-btn">
+        <% end %>
       </div>
       <!-- Show Bonds -->
-      <div class="brand-container-no-style col-xs-12 col-sm-8">
-        <%= render 'shared/bonds_dashboard' %>
+      <div class="brand-container-no-style col-xs-12 col-sm-8" id="bonds-index">
+        <%= render 'shared/bonds_dashboard', bonds: @bonds %>
       </div>
     </div>
   </div>
@@ -43,10 +54,40 @@
 
 <%= content_for :after_js do %>
 <script>
-  $('.product-term').click(function(event) {
-    console.log(this.id);
-    $(".product-bond-" + this.id).slideToggle();
+  function countryClicked(e) {
+    e.classList.toggle('terms-btn-inactive');
+    const countryFilter = document.getElementsByName('countryFilter');
+    countryFilter[0].classList.toggle(e.id);
+    countryFilter[0].value = countryFilter[0].classList;
+    console.log(countryFilter[0].value);
+    $('#filter-btn').click();
+  };
+
+  function termClicked(e) {
+    e.classList.toggle('terms-btn-inactive');
+    const termFilter = document.getElementsByName('termFilter');
+    termFilter[0].classList.toggle(e.id);
+    termFilter[0].value = termFilter[0].classList;
+    console.log(termFilter[0].value);
+    $('#filter-btn').click();
+  };
+
+  function calculateInterest(e) {
+    let cards = document.querySelectorAll('.bond-card');
+    let investment = parseFloat(e.value);
+    cards.forEach(function(card){
+      let intpercent = parseFloat(card.children[1].id);
+      let term = parseFloat(card.children[2].children[0].id);
+      let interest = accounting.formatMoney((intpercent/100) * (term/12) * investment);
+      card.children[2].children[2].innerText ="Interés " + interest;
+    });
+  }
+
+  $('.terms-btn').on('click', function(e) {
+    e.preventDefault();
   })
+
+
 </script>
 
 <% end %>

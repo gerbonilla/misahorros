@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    accountingjs-rails (0.0.4)
     actioncable (5.1.3)
       actionpack (= 5.1.3)
       nio4r (~> 2.0)
@@ -192,6 +193,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  accountingjs-rails
   autoprefixer-rails
   bootstrap-sass
   devise
@@ -200,6 +202,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   listen (~> 3.0.5)
+  money
   money-rails
   pg
   pry-byebug
