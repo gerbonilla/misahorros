@@ -31,7 +31,7 @@
         </div>
         <br>
         <div class="brand-container">
-          <p>Filtra por plazo</p>
+          <%= label_tag("Filtra por plazo:") %>
           <div class="btn-group-prop">
             <% @terms.each do |t| %>
             <% termsString = t > 1 ? "#{t} Meses" : "#{t} Mes" %>
