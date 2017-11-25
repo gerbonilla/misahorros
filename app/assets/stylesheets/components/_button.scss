@@ -19,6 +19,7 @@
     outline:0;
   }
 }
+
 a.terms-btn {
   text-decoration: none;
   &:hover {
@@ -31,6 +32,9 @@ a.terms-btn {
   background-color: #eeeeee;
   border: none;
   color: black;
+  .fa {
+    color: white;
+  }
   a {
     color: black;
     &:hover {

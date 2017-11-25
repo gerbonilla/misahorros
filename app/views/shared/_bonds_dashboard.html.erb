@@ -1,4 +1,3 @@
-
 <!-- Bonds container -->
 <div class="container">
   <% bonds.sort_by{|b| b.nominal_rate }.reverse.each do |bond| %>
@@ -19,12 +18,12 @@
 
     <!-- Bond Country and Bank -->
     <div class="bond-country">
-    <p id="bond-country"><%= bond.country %></p>
+      <p id="bond-country"><%= bond.country %></p>
     </div>
 
     <!-- Info Button -->
     <div class="bond-buttons-wrapper">
-    <%= link_to bond_path(bond) do %>
+      <%= link_to bond_path(bond) do %>
       <button type="button text-right" class="btn-bond-card-orange">Aplicar</button>
       <button type="button text-right" class="btn-bond-card">Ver Producto</button>
       <% end %>

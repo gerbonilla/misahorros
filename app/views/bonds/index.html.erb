@@ -7,15 +7,14 @@
         <!-- Inversion Form Field -->
         <%= form_tag(bonds_path, method: "get", remote: true) do %>
         <div class="brand-container">
-            <div class="input-group form-inline text-center">
-              <span class="input-group-addon">Inversión ($)</span>
-              <input type="number" onkeyup="calculateInterest(this)" value="5000" min="0" step="100" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
-            </div>
+          <div class="input-group form-inline text-center">
+            <span class="input-group-addon">Inversión ($)</span>
+            <input type="number" onkeyup="calculateInterest(this)" value="5000" min="0" step="100" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="c2" />
+          </div>
         </div>
         <br>
 
         <!-- Country & Terms Tabs -->
-
         <div class="brand-container">
 
           <%= label_tag("Filtrar por pais:") %>
@@ -24,7 +23,7 @@
             <input type="hidden" name="termFilter">
             <% @countries.each do |country| %>
             <button onclick="countryClicked(this)" class="terms-btn" id="<%= country.gsub(' ', '_') %>">
-              <%= country %>
+              <span><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp&nbsp</span><%= country %>
             </button>
             <% end %>
           </div>
@@ -34,8 +33,9 @@
           <%= label_tag("Filtrar por plazo:") %>
           <div class="btn-group-prop">
             <% @terms.each do |t| %>
-            <% termsString = t > 1 ? "#{t} Meses" : "#{t} Mes" %>
-            <button onclick="termClicked(this)" class="terms-btn" id="<%= t %>"><%= termsString %>
+            <% termsString = t > 1 ? "#{t} Meses" : "#{t} Mes  " %>
+            <button onclick="termClicked(this)" class="terms-btn" id="<%= t %>">
+              <span><i class="fa fa-check-circle" aria-hidden="true"></i>&nbsp&nbsp</span><%= termsString %>
             </button>
             <% end %>
           </div>
@@ -56,19 +56,23 @@
 <script>
   function countryClicked(e) {
     e.classList.toggle('terms-btn-inactive');
+    const bondsContainer = document.getElementById('bonds-index');
+    bondsContainer.innerHTML = '';
+    bondsContainer.insertAdjacentHTML('beforeend', '<div class="boat-container"><ferry><chimney></chimney><waves></waves></ferry></div>');
     const countryFilter = document.getElementsByName('countryFilter');
     countryFilter[0].classList.toggle(e.id);
     countryFilter[0].value = countryFilter[0].classList;
-    console.log(countryFilter[0].value);
     $('#filter-btn').click();
   };
 
   function termClicked(e) {
     e.classList.toggle('terms-btn-inactive');
+    const bondsContainer = document.getElementById('bonds-index');
+    bondsContainer.innerHTML = '';
+    bondsContainer.insertAdjacentHTML('beforeend', '<div class="boat-container"><ferry><chimney></chimney><waves></waves></ferry></div>');
     const termFilter = document.getElementsByName('termFilter');
     termFilter[0].classList.toggle(e.id);
     termFilter[0].value = termFilter[0].classList;
-    console.log(termFilter[0].value);
     $('#filter-btn').click();
   };
 
